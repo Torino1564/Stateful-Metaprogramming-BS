@@ -4,6 +4,7 @@
 #include <type_traits>
 
 
+
 // E1
 template<typename...>
 struct type_list {};
@@ -99,7 +100,7 @@ template<
     auto EvalTag = [] {},
     auto State = get_state<TUTag, EvalTag>()
 >
-constexpr auto element_count()
+consteval auto element_count()
 {
     return State.n;
 }
@@ -132,35 +133,36 @@ constexpr auto append = [] { return State; };           // E10.1
 
 template <unsigned N>
 struct readerC {
-	friend auto counted_flag(readerC<N>);
+    friend auto counted_flag(readerC<N>);
 };
 
 template <unsigned N>
 struct setterC {
-	friend auto	counted_flag(readerC<N>) {}
+    friend auto	counted_flag(readerC<N>) {}
 
-	static constexpr unsigned n = N;
+    static constexpr unsigned n = N;
 };
 
 template<auto Tag, typename T, unsigned NextVal = 0>
 [[nodiscard]]
 consteval auto counter_impl()
 {
-	constexpr bool counted_past_value = requires(readerC<NextVal> r) {
-		counted_flag(r);
-	};
+    constexpr bool counted_past_value = requires(readerC<NextVal> r) {
+        counted_flag(r);
+    };
 
-	if constexpr (counted_past_value) {
-		return counter_impl<Tag, T, NextVal + 1>();
-	}
-	else
-	{
+    if constexpr (counted_past_value) {
+        return counter_impl<Tag, T, NextVal + 1>();
+    }
+    else
+    {
         append<T>;
-		setterC<NextVal> s;
-		return s.n;
-	}
+        setterC<NextVal> s;
+        return s.n;
+    }
 }
 
-template <typename T, auto Tag = [] {}, auto Val = counter_impl<Tag, T>()>
+template <typename T, auto Tag = [] {}, auto Val = counter_impl<Tag, T>() >
 constexpr auto counter = Val;
+
 

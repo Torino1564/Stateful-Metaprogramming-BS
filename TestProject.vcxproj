@@ -129,7 +129,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="CTC.h" />
+    <ClInclude Include="PepeComponent.h" />
+    <ClInclude Include="PeponeComponent.h" />
+    <ClInclude Include="PepopotamusComponent.h" />
     <ClInclude Include="Test.h" />
   </ItemGroup>
   <ItemGroup>
