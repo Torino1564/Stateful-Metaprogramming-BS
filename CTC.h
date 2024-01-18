@@ -1,3 +1,5 @@
+// credit https://mc-deltat.github.io/articles/stateful-metaprogramming-cpp20
+
 #pragma once
 #include <tuple>
 #include <concepts>
