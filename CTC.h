@@ -8,6 +8,11 @@
 template<typename...>
 struct type_list {};
 
+template <typename T, typename Input_t>
+using tuple_append_t = decltype(
+    std::tuple_cat(std::declval<T>(), std::declval<std::tuple<Input_t>>())
+    );
+
 
 // E2
 template<class TypeList, typename T>
@@ -56,7 +61,7 @@ struct setter {
 };
 
 
-template struct setter<0, type_list<>, tu_tag>;     // E6
+template struct setter<0, std::tuple<>, tu_tag>;     // E6
 
 
 // E7
@@ -110,7 +115,7 @@ template<
 consteval auto append_impl() {
     using cur_state = decltype(get_state<TUTag, EvalTag>());            // E9.1
     using cur_list = typename cur_state::list;
-    using new_list = typename type_list_append<cur_list, T>::type;      // E9.2
+    using new_list = tuple_append_t<cur_list, T>;      // E9.2
     setter<cur_state::n + 1, new_list, TUTag> s;                        // E9.3
     return s.state;                                                     // E9.4
 }
@@ -124,11 +129,6 @@ template<
     auto State = append_impl<T, TUTag, EvalTag>()
 >
 constexpr auto append = [] { return State; };           // E10.1
-
-template <typename T, typename Input_t>
-using tuple_append_t = decltype(
-	std::tuple_cat(std::declval<T>(), std::declval<std::tuple<Input_t>>())
-);
 
 template <unsigned N>
 struct readerC {

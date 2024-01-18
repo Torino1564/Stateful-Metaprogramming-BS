@@ -16,22 +16,26 @@ public:
 
 class TC1 : public Base_impl<TC1>
 {
-
+public:
+	int pepe;
 };
 
 class TC2 : public Base_impl<TC2>
 {
-
+public:
+	float pepone;
 };
 
 class TC3 : public Base_impl<TC3>
 {
-
+public:
+	double pepununs;
 };
 
 class TC4 : public Base_impl<TC4>
 {
-
+public:
+	long double pepopotamus;
 };
 
 template<typename ... input_t>
@@ -79,7 +83,10 @@ int main(int argc, char** argv)
 	cm.GetList();
 	cm.GetElementCount();
 
+	using T1 = typename std::remove_reference_t<decltype(std::get<0>(cm.GetList()))>;
+	T1 component0;
 
+	component0.pepe = 69;
 
 	std::tuple<int> tt1;
 	tuple_append_t<decltype(tt1), float> test3;
