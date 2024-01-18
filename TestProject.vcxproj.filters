@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Test.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CTC.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -33,9 +30,21 @@
     <ClInclude Include="PepopotamusComponent.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SomeClass.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SomeSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SomeSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SomeClass.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

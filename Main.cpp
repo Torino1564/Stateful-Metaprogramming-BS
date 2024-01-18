@@ -1,11 +1,12 @@
-#include "Test.h"
 #include <tuple>
 #include <iostream>
 #include "CTC.h"
 
 #include "PepeComponent.h"
-#include "PeponeComponent.h"
 #include "PepopotamusComponent.h"
+#include "PeponeComponent.h"
+#include "SomeSystem.h"
+#include "SomeClass.h"
 
 int main(int argc, char** argv)
 {
@@ -20,6 +21,14 @@ int main(int argc, char** argv)
 	PepeType pepeComp;
 	pepeComp.pepe = 69;
 
-	//pepeComp.pepe = 69;
+	SomeSystem::Execute();
+
+	SomeClass sc1;
+
+	for (int i = 0; i < 10; i++)
+	{
+		sc1.DoSomething();
+	}
+
 	std::cout << "The fuck is going on!" << std::endl;
 }

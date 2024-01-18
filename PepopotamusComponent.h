@@ -4,5 +4,5 @@
 class PepopotamusComponent : public ComponentBase<PepopotamusComponent>
 {
 public:
-	int pepopotamus;
+	int pepopotamus = 0;
 };
